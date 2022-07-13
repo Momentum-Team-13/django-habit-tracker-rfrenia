@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('registration.backends.simple.urls')),
     path('', tracker_views.home, name='home'),
-    #path('habits/', tracker_views.list_habits, name='list_habits'),
+    path('habits/', tracker_views.list_habits, name='list_habits'),
 ]
 if settings.DEBUG:
     urlpatterns.append(path(r'^__debug__/', include(debug_toolbar.urls)))
