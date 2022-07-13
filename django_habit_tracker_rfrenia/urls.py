@@ -17,9 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
+import debug_toolbar
 from tracker import views as tracker_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('registration.backends.simple.urls')),
+    path('', tracker_views.home, name='home'),
+    #path('habits/', tracker_views.list_habits, name='list_habits'),
 ]
+if settings.DEBUG:
+    urlpatterns.append(path(r'^__debug__/', include(debug_toolbar.urls)))
