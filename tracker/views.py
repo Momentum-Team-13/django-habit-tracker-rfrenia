@@ -10,8 +10,12 @@ def home(request):
     return render(request, 'tracker/home.html')
 
 
-@login_required
+#@login_required
 def list_habits(request):
     habit_list = Habit.objects.all()
     return render(request, 'tracker/list_habits.html',
                 {"habit_list": habit_list})
+
+
+def register(request):
+    return render(request)

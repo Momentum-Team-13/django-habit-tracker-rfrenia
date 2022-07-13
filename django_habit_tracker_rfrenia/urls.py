@@ -25,6 +25,8 @@ urlpatterns = [
     path('auth/', include('registration.backends.simple.urls')),
     path('', tracker_views.home, name='home'),
     path('habits/', tracker_views.list_habits, name='list_habits'),
+    path('auth/register/', tracker_views.home, name='register'),
+
 ]
 if settings.DEBUG:
-    urlpatterns.append(path(r'^__debug__/', include(debug_toolbar.urls)))
+    urlpatterns.append(path(r'__debug__/', include(debug_toolbar.urls)))
