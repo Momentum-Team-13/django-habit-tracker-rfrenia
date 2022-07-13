@@ -19,3 +19,7 @@ def list_habits(request):
 
 def register(request):
     return render(request)
+
+
+def login(request):
+    return render(request)

@@ -26,6 +26,7 @@ urlpatterns = [
     path('', tracker_views.home, name='home'),
     path('habits/', tracker_views.list_habits, name='list_habits'),
     path('auth/register/', tracker_views.home, name='register'),
+    path('auth/login/', tracker_views.home, name='login'),
 
 ]
 if settings.DEBUG:
