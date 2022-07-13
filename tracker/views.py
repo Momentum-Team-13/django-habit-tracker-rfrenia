@@ -17,9 +17,3 @@ def list_habits(request):
                 {"habit_list": habit_list})
 
 
-def register(request):
-    return render(request)
-
-
-def login(request):
-    return render(request)
