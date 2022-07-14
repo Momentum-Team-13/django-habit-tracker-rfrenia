@@ -8,7 +8,7 @@ class HabitForm(forms.ModelForm):
         fields = [
             'habit_name',
             'target',
-            'unit'
+            'unit',
         ]
 
 

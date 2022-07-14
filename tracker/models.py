@@ -22,7 +22,7 @@ class User(AbstractUser):
 
 class Habit(BaseModel):
     habit_name = models.CharField(max_length=255)
-    target = models.IntegerField
+    target = models.IntegerField(null=True, blank=True,)
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=True, blank=True)
     unit = models.CharField(max_length=255, null=True, blank=True)
     #note = models.TextField(null=True, blank=True)

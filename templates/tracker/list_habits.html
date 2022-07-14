@@ -2,8 +2,10 @@
 
 {% block content %}
 <h1>All Habits</h1>
+<p> <a href="{% url 'auth_logout' %}">Log Out</a></p>
 
-<p><a>Add Habit To Track</a></p>
+<br>
+<p> <a href="{% url 'add_habit' %}">Add Habit To Track</a></p>
 
 <div class="flex flex-wrap">
     {% for habit in habits %}
