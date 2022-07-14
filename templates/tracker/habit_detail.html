@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Selected: </h1>
+
+<div class="flex flex-wrap">
+
+    <div class="flex flex-wrap">
+
+<div class="w-33 pa3">
+    <h2>{{ habit.habit_name}}</h2>
+
+    {% if habit.list_habit %}
+    <div class="flex">
+        <div class="pr2"></div>
+        <div>{{ habit.list_habit }}</div>
+    </div>
+{% endif %}
+
+
+    
+<br>    
+<p><a href="{% url 'list_habits' %}"> Back To View Habits</a></p>
+<br>
+<a href="{% url 'edit_habit' pk=user.pk %}">Edit Habit</a>
+<br>    
+<a href="{% url 'delete_habit' pk=user.pk %}">Delete Habit</a>
+
+    </div>
+</div>  
+
+{% endblock %}
