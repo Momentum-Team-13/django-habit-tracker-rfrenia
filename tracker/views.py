@@ -21,12 +21,12 @@ def list_habits(request):
 
 @login_required
 def habit_detail(request, pk):
-    habits = Habit.objects.for_user(request.user)
+    habits = Habit.objects.all()
     habit = get_object_or_404(habits, pk=pk)
-    entrys = DailyRecord.objects.for_user(request.user)
-    entry = get_object_or_404(entrys, pk=pk)
+    #entrys = DailyRecord.objects.all()
+    #entry = get_object_or_404(entrys, pk=pk)
     return render(request, "tracker/habit_detail.html",
-        {"habit": habit, "entry": entry})
+        {"habit": habit})
 
 
 @login_required
@@ -55,7 +55,7 @@ def add_habit(request):
             habit.author = request.user
             habit.save()
             messages.success(request, "Habit added!")
-            return redirect("list_habit", pk=habit.pk)
+            return redirect("list_habits")
 
     else:
         form = HabitForm()

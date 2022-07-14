@@ -23,7 +23,7 @@ class User(AbstractUser):
 class Habit(BaseModel):
     habit_name = models.CharField(max_length=255)
     target = models.IntegerField(null=True, blank=True,)
-    user = models.ForeignKey("User", on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey("User", on_delete=models.CASCADE, null=True, blank=True, related_name="habits")
     unit = models.CharField(max_length=255, null=True, blank=True)
     #note = models.TextField(null=True, blank=True)
 
@@ -34,7 +34,7 @@ class DailyRecord(BaseModel):
     #date = models.DateTimeField(auto_now_add=True, null=True, blank=True,)
     #action_number is the amount or quantity that the user did of their habit. Ex: 1000 steps taken
     action_number = models.IntegerField(null=True, blank=True,)
-    habit = models.ForeignKey("Habit", on_delete=models.CASCADE, null=True, blank=True)
+    habit = models.ForeignKey("Habit", on_delete=models.CASCADE, null=True, blank=True, related_name="dailyrecords")
 
     class meta:
         constaints = [
