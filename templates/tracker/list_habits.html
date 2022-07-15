@@ -15,14 +15,6 @@
             <h2><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.habit_name }}</a></h2>
 
     {% endfor %}
-    <p>
-        <div class="options">
 
-            <a href="{% url 'edit_habit' pk=user.pk %}">Edit Habit</a>
-            <br>    
-            <a href="{% url 'delete_habit' pk=user.pk %}">Delete Habit</a>
-        </div>
-        
-    </p>
     </div>
 {% endblock %}
