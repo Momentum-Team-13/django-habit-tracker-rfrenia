@@ -99,4 +99,4 @@ def add_entry(request, habit_pk):
             entry.habit = habit
             entry.save()
 
-    return redirect("habit_detail", pk=habit.pk)
+    return redirect('habit_detail', pk=habit.pk)
