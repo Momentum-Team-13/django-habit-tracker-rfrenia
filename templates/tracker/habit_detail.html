@@ -10,17 +10,16 @@
 <div class="w-33 pa3">
     <h2>{{ habit.habit_name}}</h2>
 
-    {% if habit.list_habit %}
     <div class="flex">
         <div class="pr2"></div>
-        <div>{{ habit.list_habit }}</div>
+        <div>Target amount: {{ habit.target}} {{ habit.unit}}</div>
     </div>
-{% endif %}
+    <a href="{% url 'add_entry' pk=habit.pk %}">Add entry</a>
 
 
     
 <br>    
-<p><a href="{% url 'list_habits' %}"> Back To View Habits</a></p>
+<p><a href="{% url 'list_habits' %}"> Back To View All Habits</a></p>
 <br>
 <a href="{% url 'edit_habit' pk=user.pk %}">Edit Habit</a>
 <br>    

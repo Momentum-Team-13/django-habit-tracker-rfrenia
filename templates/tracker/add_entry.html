@@ -3,12 +3,14 @@
 {% block content %}
 <h1>Add a new entry</h1>
 <div class="form">
-    <form action="{% url 'add_entry' %}" method="POST" >
+    <form  method="POST" >
     {% csrf_token %}
-    {{ form.as_p }}
-    </div>
+    {% for field in form %}
+    <div class="flex items-center mb2">
+        <label for="{{ field.id_for_label }}" >{{ field.label }}</label>
+        {{ field }}
+      </div>
     {% endfor %}
-    <div class="submit">
       <button type="submit" >Save</button>
     </div>
   </form>

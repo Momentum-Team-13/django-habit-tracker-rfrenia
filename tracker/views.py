@@ -23,27 +23,25 @@ def list_habits(request):
 def habit_detail(request, pk):
     habits = Habit.objects.all()
     habit = get_object_or_404(habits, pk=pk)
-    #entrys = DailyRecord.objects.all()
-    #entry = get_object_or_404(entrys, pk=pk)
     return render(request, "tracker/habit_detail.html",
         {"habit": habit})
 
 
-@login_required
-def add_entry(request):
-    if request.method == "POST":
-        form = DailyRecordForm(data=request.POST)
-        if form.is_valid():
-            habit = form.save(commit=False)
-            habit.author = request.user
-            habit.save()
-            messages.success(request, "Entry added!")
-            return redirect("list_habits", pk=habit.pk)
+# @login_required
+# def add_entry(request):
+#     if request.method == "POST":
+#         form = DailyRecordForm(data=request.POST)
+#         if form.is_valid():
+#             habit = form.save(commit=False)
+#             habit.user = request.user
+#             habit.save()
+#             messages.success(request, "Entry added!")
+#             return redirect("habit_detail", pk=habit.pk)
 
-    else:
-        form = DailyRecordForm()
+#     else:
+#         form = DailyRecordForm()
 
-    return render(request, "tracker/add_entry.html", {"form": form})
+#     return render(request, "tracker/add_entry.html", {"form": form})
 
 
 @login_required
@@ -52,10 +50,10 @@ def add_habit(request):
         form = HabitForm(data=request.POST)
         if form.is_valid():
             habit = form.save(commit=False)
-            habit.author = request.user
+            habit.user = request.user
             habit.save()
             messages.success(request, "Habit added!")
-            return redirect("list_habits")
+            return redirect("habit_detail", pk=habit.pk)
 
     else:
         form = HabitForm()
@@ -83,7 +81,22 @@ def edit_habit(request, pk):
         forms = HabitForm(data=request.POST, instance=habits)
         if forms.is_valid():
             forms.save()
-            return redirect(to="list_habits")
+            return redirect(to="habit_detail")
 
     return render(request, "tracker/edit_habit.html", 
                     {"forms": forms, "habits": habits})
+
+
+@login_required
+def add_entry(request, habit_pk):
+    habit = get_object_or_404(request.user.habits, pk=habit_pk)
+
+    if request.method == "POST":
+        form = DailyRecordForm(data=request.POST)
+
+        if form.is_valid():
+            entry = form.save(commit=False)
+            entry.habit = habit
+            entry.save()
+
+    return redirect("habit_detail", pk=habit.pk)

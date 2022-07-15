@@ -6,21 +6,14 @@
 
 <br>
 <p> <a href="{% url 'add_habit' %}">Add Habit To Track</a></p>
-<a href="{% url 'habit_detail' pk=user.pk %}">track</a>
-<p>{{ user.habits }}</p>
-<p>{{ habit.unit }}</p>
 
+
+<p>Current Habits</p>
 <div class="flex flex-wrap">
-    {% for habit_list in habit %}
+    {% for habit in user.habits.all %}
         <div class="w-33 pa3">
-            <h2><a href="{% url 'habit_detail' pk=user.pk %}">{{ habit_list.habit_name }}</a></h2>
-                <p>Test</p>
-    {% if habit.habit_name %}
-        <div class="flex">
-            <div class="pr2"></div>
-            <div>{{ habit.habit_name }}</div>
-        </div>
-    {% endif %}
+            <h2><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.habit_name }}</a></h2>
+
     {% endfor %}
     <p>
         <div class="options">
