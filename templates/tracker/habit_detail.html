@@ -15,8 +15,7 @@
         <div>Target amount: {{ habit.target }} {{ habit.unit }}</div>
 
     {% for entry in habit.dailyrecords.all %}
-
-        <h3> Test {{ dailyrecord.action_number }} </h3>
+        <h3> Test {{ dailyrecord.habit }} </h3>
     {% endfor %}
 
     <a href="{% url 'add_entry' habit_pk=habit.pk %}">Add entry</a>
@@ -26,9 +25,9 @@
 <br>    
 <p><a href="{% url 'list_habits' %}"> Back To View All Habits</a></p>
 <br>
-<a href="{% url 'edit_habit' pk=user.pk %}">Edit Habit</a>
+<a href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a>
 <br>    
-<a href="{% url 'delete_habit' pk=user.pk %}">Delete Habit</a>
+<a href="{% url 'delete_habit' pk=habit.pk %}">Delete Habit</a>
 
     </div>
 </div>  

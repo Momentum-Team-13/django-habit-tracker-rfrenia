@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import HabitForm, DailyRecordForm
 
 
-
 def home(request):
     if request.user.is_authenticated:
         return redirect('list_habits')
@@ -90,13 +89,35 @@ def edit_habit(request, pk):
 @login_required
 def add_entry(request, habit_pk):
     habit = get_object_or_404(request.user.habits, pk=habit_pk)
-
     if request.method == "POST":
         form = DailyRecordForm(data=request.POST)
-
         if form.is_valid():
             entry = form.save(commit=False)
             entry.habit = habit
             entry.save()
+            return redirect(to='habit_detail', pk=habit.pk)
 
-    return redirect('habit_detail', pk=habit.pk)
+    else:
+        form = DailyRecordForm()
+
+    return render(request, "tracker/add_entry.html", {"form": form})
+
+#     return render(request, "tracker/add_entry.html",
+#             {"habit": habit})
+
+
+# @login_required
+# def add_habit(request):
+#     if request.method == "POST":
+#         form = HabitForm(data=request.POST)
+#         if form.is_valid():
+#             habit = form.save(commit=False)
+#             habit.user = request.user
+#             habit.save()
+#             messages.success(request, "Habit added!")
+#             return redirect("habit_detail", pk=habit.pk)
+
+#     else:
+#         form = HabitForm()
+
+#     return render(request, "tracker/add_habit.html", {"form": form})
